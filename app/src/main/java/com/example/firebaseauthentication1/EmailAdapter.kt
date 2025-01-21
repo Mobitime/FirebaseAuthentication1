@@ -6,8 +6,10 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class EmailAdapter(private val emails: List<Email>) : 
-    RecyclerView.Adapter<EmailAdapter.EmailViewHolder>() {
+class EmailAdapter(
+    private val emailsList: List<Email>,
+    private val onDeleteClickListener: ((Email) -> Unit)? = null
+) : RecyclerView.Adapter<EmailAdapter.EmailViewHolder>() {
 
     class EmailViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val senderTextView: TextView = itemView.findViewById(R.id.tvSender)
@@ -22,11 +24,16 @@ class EmailAdapter(private val emails: List<Email>) :
     }
 
     override fun onBindViewHolder(holder: EmailViewHolder, position: Int) {
-        val email = emails[position]
+        val email = emailsList[position]
         holder.senderTextView.text = email.sender
         holder.subjectTextView.text = email.subject
         holder.previewTextView.text = email.preview
+        
+
+        holder.itemView.setOnClickListener {
+            onDeleteClickListener?.invoke(email)
+        }
     }
 
-    override fun getItemCount() = emails.size
+    override fun getItemCount() = emailsList.size
 }
