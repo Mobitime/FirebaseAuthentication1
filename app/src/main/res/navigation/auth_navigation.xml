@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/auth_navigation"
+    app:startDestination="@id/loginFragment">
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.firebaseauthentication1.LoginFragment"
+        android:label="Login">
+        <action
+            android:id="@+id/action_loginFragment_to_registrationFragment"
+            app:destination="@id/registrationFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_emailFragment"
+            app:destination="@id/emailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/registrationFragment"
+        android:name="com.example.firebaseauthentication1.RegistrationFragment"
+        android:label="Registration">
+        <action
+            android:id="@+id/action_registrationFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/emailFragment"
+        android:name="com.example.firebaseauthentication1.EmailFragment"
+        android:label="Email">
+        <action
+            android:id="@+id/action_emailFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+</navigation>
